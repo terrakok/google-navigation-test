@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/AFragment">
+
+    <fragment
+        android:id="@+id/AFragment"
+        android:name="ru.terrakok.cicerone.gnavigation.AFragment"
+        android:label="AFragment"
+        tools:layout="@layout/fragment_a">
+        <action
+            android:id="@+id/action_AFragment_to_BFragment"
+            app:destination="@id/BFragment" />
+        <action
+            android:id="@+id/action_AFragment_to_navigation"
+            app:destination="@id/navigation" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/BFragment"
+        android:name="ru.terrakok.cicerone.gnavigation.BFragment"
+        android:label="BFragment"
+        tools:layout="@layout/fragment_b">
+        <action
+            android:id="@+id/action_BFragment_to_CFragment"
+            app:destination="@id/CFragment" />
+        <action
+            android:id="@+id/action_BFragment_to_FFragment"
+            app:destination="@id/FFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/CFragment"
+        android:name="ru.terrakok.cicerone.gnavigation.CFragment"
+        android:label="CFragment"
+        tools:layout="@layout/fragment_c">
+        <action
+            android:id="@+id/action_CFragment_to_EFragment"
+            app:destination="@id/EFragment" />
+        <action
+            android:id="@+id/action_CFragment_to_DFragment"
+            app:destination="@id/DFragment"
+            app:popUpTo="@+id/BFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/EFragment"
+        android:name="ru.terrakok.cicerone.gnavigation.EFragment"
+        android:label="EFragment"
+        tools:layout="@layout/fragment_e">
+        <action
+            android:id="@+id/action_EFragment_to_DFragment"
+            app:destination="@id/DFragment"
+            app:popUpTo="@+id/BFragment" />
+        <action
+            android:id="@+id/action_EFragment_to_BFragment"
+            app:destination="@id/BFragment"
+            app:popUpTo="@+id/BFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/FFragment"
+        android:name="ru.terrakok.cicerone.gnavigation.FFragment"
+        android:label="FFragment"
+        tools:layout="@layout/fragment_f">
+        <action
+            android:id="@+id/action_FFragment_self"
+            app:destination="@id/FFragment"
+            app:launchSingleTop="true" />
+        <action
+            android:id="@+id/action_FFragment_to_navigation"
+            app:destination="@id/navigation" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/DFragment"
+        android:name="ru.terrakok.cicerone.gnavigation.DFragment"
+        android:label="DFragment"
+        tools:layout="@layout/fragment_d">
+        <action
+            android:id="@+id/action_DFragment_to_AFragment"
+            app:clearTask="true"
+            app:destination="@+id/AFragment" />
+    </fragment>
+    <navigation
+        android:id="@+id/navigation"
+        app:startDestination="@id/nestedAFragment">
+        <fragment
+            android:id="@+id/nestedAFragment"
+            android:name="ru.terrakok.cicerone.gnavigation.NestedAFragment"
+            android:label="NestedAFragment"
+            tools:layout="@layout/fragment_nes_a">
+            <action
+                android:id="@+id/action_nestedAFragment_to_nestedBFragment"
+                app:destination="@id/nestedBFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/nestedBFragment"
+            android:name="ru.terrakok.cicerone.gnavigation.NestedBFragment"
+            android:label="NestedBFragment"
+            tools:layout="@layout/fragment_nes_b" />
+    </navigation>
+</navigation>
